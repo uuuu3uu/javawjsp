@@ -36,7 +36,7 @@
 <body>
 <p><br/></p>
 <div class="container">
-	<h2>아이디 체크폼 testtest</h2>
+	<h2>아이디 체크폼</h2>
 	<c:if test="${res == 1}">
 		<h4><font color="blue"><b>${mid}</b></font> 아이디는 사용 가능합니다</h4>
 		<p><input type="button" value="창닫기" onclick="sendCheck()"/></p>

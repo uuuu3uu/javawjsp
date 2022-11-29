@@ -18,7 +18,7 @@ public class GuestDAO {
 	
 	private String url = "jdbc:mysql://localhost:3306/javaworks";
 	private String user = "root";
-	private String password = "1234";
+	private String password = "5555";
 	
 	// 객체 생성 시 DB연결
 	public GuestDAO() {

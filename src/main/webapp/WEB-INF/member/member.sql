@@ -29,11 +29,13 @@ create table member (
 );
 
 
---drop table member;
+drop table member;
 --delete 
 desc member;
 
-insert into member values (default,'admin','1234','관리맨','관리자',default,default,'010-1234-5678','충북 청주시 705','u_u2222@naver.com','uuu2u22@naver.com','프리랜서','등산/바둑',default,'관리자입니다',default,default,default,0,default,default,default,default);
+--insert into member values (default,'admin','1234','관리맨','관리자',default,default,'010-1234-5678','충북 청주시 705','u_u2222@naver.com','uuu2u22@naver.com','프리랜서','등산/바둑',default,'관리자입니다',default,default,default,0,default,default,default,default);
+insert into member values (default,'admin','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','관리맨','관리자',default,default,'010-1234-5678','충북 청주시 705','u_u2222@naver.com','uuu2u22@naver.com','프리랜서','등산/바둑',default,'관리자입니다',default,default,default,0,default,default,default,default);
+insert into member values (default,'bbb111','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','오렌이','정회원',default,default,'010-0000-5678','부산 남포동 330','rrke22@naver.com','ee2@naver.com','변호사','등산/바둑',default,'test',default,default,default,2,default,default,default,default);
 
 select * from member;
 

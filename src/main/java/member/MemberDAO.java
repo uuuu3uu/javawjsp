@@ -145,17 +145,19 @@ public class MemberDAO {
 	}
 
 	//
-	public ArrayList<MemberVO> getMemList(int level) {
-		ArrayList<MemberVO> vos = new ArrayList<>();
+	public ArrayList<MemberVO> getMemList(int level, int startIndexNo, int pageSize) {
+        ArrayList<MemberVO> vos = new ArrayList<>();
 		try {
 			if(level != 0) {
-			sql = "select * from memeber where useInfor = '공개' order by idx desc";
+				sql = "select * from member where userInfor='공개' order by idx desc limit ?,?";
 			}
 			else {
-				sql = "select * from member order by idx desc";
+				sql = "select * from member order by idx desc limit ?,?";
 			}
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+            pstmt.setInt(1, startIndexNo);
+            pstmt.setInt(2, pageSize);
+            rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				vo = new MemberVO();
@@ -245,6 +247,25 @@ public class MemberDAO {
 		}
 		
 		return res;
+	}
+	
+	// 회원리스트 총  레코드 건수 
+	public int totRecCnt() {
+		int totRecCnt = 0;
+		try {
+			sql = "select count(*) as cnt from member";   // as cnt : 변수 준거임
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+//			totRecCnt = rs.getInt(1); -> 이런 방식도 되지만 쓰지말고..vo쓸때 불편해지기 때문에
+			totRecCnt = rs.getInt("cnt");		// 변수 cnt
+		} catch (SQLException e) {
+			System.out.println("SQL 에러 : " + e.getMessage());
+		} finally {
+			getConn.rsClose();
+		}
+		return totRecCnt;
 	}
 	
 	
