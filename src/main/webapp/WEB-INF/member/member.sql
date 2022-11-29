@@ -38,3 +38,4 @@ insert into member values (default,'admin','1234','관리맨','관리자',defaul
 select * from member;
 
 select * from member order by idx desc;
+select * from member order by name;
