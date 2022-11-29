@@ -36,3 +36,5 @@ desc member;
 insert into member values (default,'admin','1234','관리맨','관리자',default,default,'010-1234-5678','충북 청주시 705','u_u2222@naver.com','uuu2u22@naver.com','프리랜서','등산/바둑',default,'관리자입니다',default,default,default,0,default,default,default,default);
 
 select * from member;
+
+select * from member order by idx desc;
