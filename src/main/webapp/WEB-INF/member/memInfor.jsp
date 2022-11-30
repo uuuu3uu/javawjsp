@@ -38,6 +38,7 @@
 			<tr><td>공개유무: ${vo.userInfor}</td></tr>
 		</c:if>
 		<tr><td>사진: <img src="${ctp}/data/member/${vo.photo}" width="150px"/></td></tr>
+		<tr><td><button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/memList.mem?pag=${pag}';">돌아가기</button></td></tr>
 	</table>
 	
 </div>

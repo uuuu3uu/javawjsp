@@ -29,7 +29,7 @@ create table member (
 );
 
 
-drop table member;
+--drop table member;
 --delete 
 desc member;
 

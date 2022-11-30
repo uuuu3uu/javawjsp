@@ -8,6 +8,20 @@
   <title>memList.jsp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <jsp:include page="/include/bs4.jsp"></jsp:include>
+  <script>
+  	'use strict';
+  	
+  	function midSearch() {
+			let mid = myform.mid.value;
+			if(mid.trim() == '') {
+				alert("아이디를 입력하세요");
+				myform.mid.focus();
+			}
+			else {
+				myform.submit();
+			}
+	}
+  </script>
 </head>
 <body>
 <jsp:include page="/include/header.jsp"/>
@@ -15,6 +29,15 @@
 <div class="container">
 	<h2>전체 회원 리스트</h2>
 	<br/>
+	<form name="myform" method="post" action="${ctp}/memMemberSearch.mem">
+		<div class="row mb-2">
+			<div class="col form-inline">
+				<input type="text" name="mid" class="form-control" autofocus />
+				<input type="button" value="아이디 개별검색" onclick="midSearch();" class="btn btn-secondary"/>
+			</div>
+			<div class="col text-right"><button type="button" onclick="location.href='${ctp}/memList.mem';'" class="btn btn-secondary">전체검색</button></div>
+		</div>
+	</form>
 	<table class="table table-hover text-center">
 		<tr class="table-dark text-dark">
 			<th>번호</th>
@@ -26,7 +49,7 @@
 	 	<c:forEach var="vo" items="${vos}" varStatus="st">
 	 		<tr>
 	 			<td>${vo.idx}</td>			<!-- 겟방식으로 ${vo.mid}의 값을 mid라는 이름의 변수로 memInfor.mem 로 보내준다   -->
-	 			<td><a href="${ctp}/memInfor.mem?mid=${vo.mid}">${vo.mid}</a></td>
+	 			<td><a href="${ctp}/memInfor.mem?mid=${vo.mid}&pag=${pag}">${vo.mid}</a></td>
 	 			<td>${vo.nickName}</td>
 	 			<td>${vo.name}<c:if test="${sLevel == 0 && vo.userInfor == '비공개'}"><font color="red">(비공개)</font></c:if></td> 
 	 			<td>${vo.gender}</td>
