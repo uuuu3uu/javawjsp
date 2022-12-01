@@ -95,7 +95,7 @@
 		아이디 : <input type="text" name="mid" id="mid" /> &nbsp;
 		<input type="button" value="아이디일반검색1(동기식)" onclick="idCheck()" class="btn btn-info"/>&nbsp;
 		<input type="button" value="아이디검색2(비동기식)" onclick="idCheck2()" class="btn btn-success"/>&nbsp;
-		<input type="button" value="아이디검색3(비동기식)" onclick="idCheck3()" class="btn btn-primary"/>&nbsp;
+		<input type="button" value="아이디검색3(비동기식)" onclick="idCheck3()" class="btn btn-primary"/>&nbsp; <!-- 제일 잘 쓰일 것임 -->
 		<br/>
 		<div>출력결과 : <span id="demo">${name}</span></div>
 		<hr/>

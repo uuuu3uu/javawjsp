@@ -69,7 +69,7 @@ public class MemberDAO {
 	// 오늘 처음 방문 시 방문카운트 0으로 초기화
 	public void setTodayContUpdate(String mid) {
 		try {
-			sql = "update member set todayCont = 0 where mid =?"; 
+			sql = "update member set todayCnt = 0 where mid =?"; 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			pstmt.executeUpdate();
@@ -144,7 +144,7 @@ public class MemberDAO {
 		return res;
 	}
 
-	//
+	// 전체게시글 가져오기
 	public ArrayList<MemberVO> getMemList(int level, int startIndexNo, int pageSize) {
         ArrayList<MemberVO> vos = new ArrayList<>();
 		try {
