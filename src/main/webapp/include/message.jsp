@@ -39,6 +39,11 @@
   	else if(msg == "memberDelOk") msg = "정상적으로 회원탈퇴 되었습니다";
   	else if(msg == "boInputOk") msg = "게시글이 입력되었습니다";
   	else if(msg == "boInputNo") msg = "게시글 입력 취소";
+  	else if(msg == "boDeleteOk") msg = "게시글이 삭제";
+  	else if(msg == "boDeleteNo") msg = "게시글 삭제 실패";
+  	else if(msg == "userCheckNo") msg = "정상적인 사용자가 아닙니다.....ㅗ";
+  	else if(msg == "boUpdateOk") msg = "게시글이 수정되었습니다";
+  	else if(msg == "boUpdateNo") msg = "게시글 수정 실패";
   	
   	alert(msg);
   	if(url != "") location.href = url;

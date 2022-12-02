@@ -57,31 +57,31 @@
   	function idCheck3() {		// 아이디 하나 검색 후 자료를 왕창 가져오겠다.... 비동기식
 		let mid = $("#mid").val();
 		
-		if(mid.trim() == "") {
-			alert("아이디를 입력하세요");
-			$("#mid").focus();
-			return false;
-		}
-		
-		$.ajax({
-			type : "post",
-			url  : "${ctp}/idSearchTest3",			// 전송받는 곳의 주소
-			data : {mid: mid},		// 예: {mid: mid, idx: idx} or 변수 줘서 let query = { ...} query 넣어주던가..
-							// {서버 : 자신}
-			success : function(res) {			
-				$("#demo").html(res);
-				let str = res.split("/");
-				$("#tMid").html(str[0]);
-				$("#name").html(str[1]);
-				$("#nickName").html(str[2]);
-				$("#gender").html(str[3]);
-				$("#point").html(str[4]);
-			},
-			error : function() {
-				alert("전송실패");
+			if(mid.trim() == "") {
+				alert("아이디를 입력하세요");
+				$("#mid").focus();
+				return false;
 			}
-		});
-	}
+			
+			$.ajax({
+				type : "post",
+				url  : "${ctp}/idSearchTest3",			// 전송받는 곳의 주소
+				data : {mid: mid},		// 예: {mid: mid, idx: idx} or 변수 줘서 let query = { ...} query 넣어주던가..
+								// {서버 : 자신}
+				success : function(res) {			
+					$("#demo").html(res);
+					let str = res.split("/");
+					$("#tMid").html(str[0]);
+					$("#name").html(str[1]);
+					$("#nickName").html(str[2]);
+					$("#gender").html(str[3]);
+					$("#point").html(str[4]);
+				},
+				error : function() {
+					alert("전송실패");
+				}
+			});
+		}
   
   </script>
 </head>

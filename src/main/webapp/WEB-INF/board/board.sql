@@ -24,6 +24,23 @@ insert into board values (default, '관리맨','게시판 서비스를 시작합
 
 select * from board;
 
+/* 게시판 댓글 달기 */
+create table boardReply (
+	idx 	int not null auto_increment,				/* 댓글 고유 번호 */
+	boardIdx int not null,										/* 원본글의 고유번호(외래키 지정) */
+	mid varchar(20) not null, 								/* 댓글 올린이의 아이디 */
+	nickName varchar(20) not null,						/* 댓글 올린이의 닉네임 */
+	wDate datetime default now(),							/* 댓글 올린 날짜 */
+	hostIp varchar(50) not null,							/* 댓글올린 PC의 IP */
+	content text not null,										/* 댓글 내용 */
+	primary key(idx),
+	foreign key(boardIdx) references board(idx)
+	/* on update cascade  부모꺼 업데이트 하면 같이 업데이트한다..?
+	on delete restrict */
+);
+--drop table boardReply;
+desc boardReply;
+
 /* 날짜 처리 연습 */
 select now(); 		/* now() : 오늘 날짜와 시간을 보여준다 */
 
@@ -83,6 +100,9 @@ select timestampdiff(hour, wDate, now()) from board;
 select *,timestampdiff(hour, wDate, now()) as hour_diff from board;
 select *,datediff(now(), wDate) as day_diff, timestampdiff(hour, wDate, now()) as hour_diff from board;
 
-
+/* 이전글 다음글 체크 */
+select * from board where idx < 12 order by idx desc limit 1;
+select * from board where idx > 12;
+select * from board where idx > 12 limit 1;
 
 
