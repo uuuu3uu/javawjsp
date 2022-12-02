@@ -55,6 +55,11 @@ public class BoardController extends HttpServlet {
 			command.execute(request, response);
 			return;  // 돌아가는게 없다 -> 비동기식으로 됨
 		}
+		else if(com.equals("/boGoodPlusMinus")) {
+			command = new BoGoodPlusMinusCommand();
+			command.execute(request, response);
+			return;
+		}
 		else if(com.equals("/boDeleteOk")) {
 			command = new BoDeleteOkCommand();
 			command.execute(request, response);

@@ -171,6 +171,20 @@ public class BoardDAO {
 		
 	}
 	
+	public void setGoodPlusMinus(int idx, int goodCnt) {
+		try {
+			sql = "update board set good = (good + ?) where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, goodCnt);
+			pstmt.setInt(2, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 에러 : " + e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}
+	}
+	
 	// 게시글 삭제
 	public int setBoDeleteOk(int idx) {
 		int res = 0;
@@ -356,5 +370,9 @@ public class BoardDAO {
 		}
 		return res;
 	}
+
+	
+
+	
 
 }
