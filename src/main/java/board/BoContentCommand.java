@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 public class BoContentCommand implements BoardInterface {
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idx = request.getParameter("idx")==null ? 0 : Integer.parseInt(request.getParameter("idx"));
@@ -52,7 +53,8 @@ public class BoContentCommand implements BoardInterface {
 			goodIdx = new ArrayList<String>();
 		}
 		String imsiGoodIdx = "boardGood" + idx;
-		if(goodIdx.contains(imsiGoodIdx)) {
+		if(!goodIdx.contains(imsiGoodIdx)) {
+			dao.setBoGood(idx);
 			session.setAttribute("sSw", "1");
 		}
 		else {

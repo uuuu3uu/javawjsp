@@ -17,14 +17,15 @@
 				type : "post",
 				url	 : "${ctp}/boGood.bo",
 				data : {idx : ${vo.idx}},  //문자열일때는 data : {idx : '${vo.idx}'}
-				success : function(res) {
-					location.reload();
-				},
-				error : function() {
-					alert("전송오류 안나겠지만!");
-				}
-			});	
-		}
+				success:function(res) {
+	    			if(res == "0") alert("이미 좋아요 버튼을 클릭하셨습니다.");
+	    			else location.reload();
+	    		},
+	    		error : function() {
+	    			alert("전송 오류~~");
+	    		}
+	    	});
+	    }
   	
   	function goodCheckPlus() {
     	$.ajax({
@@ -150,18 +151,18 @@
 			<th>조회수</th>
 			<td>${vo.readNum}</td>
 		</tr>
-		<tr>
+		<tr>		
 			<th>홈페이지</th>
 			<td>${vo.homePage}</td>
 			<th>좋아요</th>
-			<td><a href="javascript:goodCheck()"> <!-- content에 들어와있기 때문에 idx값 안넘겨줘도 된다❤ -->
-				<c:if test="${sSw == '1'}">🤍</c:if>
-				<c:if test="${sSw != '1'}">❤️</c:if>
-				</a>
-				${vo.good} ,
-				<a href="javascript:goodCheckPlus()">👍</a>
-        <a href="javascript:goodCheckMinus()">👎</a>
-			</td> 
+			<td><a href="javascript:goodCheck()">
+            <c:if test="${sSw == '1'}"><font color="red">❤</font></c:if>
+            <c:if test="${sSw != '1'}">❤</c:if>
+          </a>
+          ${vo.good} ,
+          <a href="javascript:goodCheckPlus()">👍</a>
+          <a href="javascript:goodCheckMinus()">👎</a>
+      </td>
 			<!-- <td>👍 👎</td> -->
 		</tr>
 		<tr>

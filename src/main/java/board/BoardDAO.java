@@ -143,34 +143,29 @@ public class BoardDAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL 에러 : " + e.getMessage());
-		}	finally {
-			getConn.pstmtClose();
-		}
-		
-	}
-
-	// 좋아요 횟수 증가 처리
-	public void setBoGood(int idx) {
-		try {
-			sql = "update board set good = good + 1 where idx = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, idx);
-			pstmt.executeUpdate();
-			
-			if(pstmt != null) pstmt.close();
-		      sql = "update board set readNum = readNum - 1 where idx = ?";
-		      pstmt = conn.prepareStatement(sql);
-		      pstmt.setInt(1, idx);
-		      pstmt.executeUpdate();
-		      
-		} catch (SQLException e) {
-			System.out.println("SQL 에러 : " + e.getMessage());
-		}	finally {
+		} finally {
 			getConn.pstmtClose();
 		}
 		
 	}
 	
+	
+	// 좋아요 횟수 증가 처리
+	public void setBoGood(int idx) {
+		try {
+      sql = "update board set good = good + 1 where idx = ?";
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setInt(1, idx);
+      pstmt.executeUpdate();
+        
+  } catch (SQLException e) {
+      System.out.println("SQL 에러 : " + e.getMessage());
+  }    finally {
+      getConn.pstmtClose();
+  }
+	}
+	
+	// 따봉을 이용한 좋아요 횟수 증감
 	public void setGoodPlusMinus(int idx, int goodCnt) {
 		try {
 			sql = "update board set good = (good + ?) where idx = ?";
