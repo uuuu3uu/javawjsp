@@ -57,7 +57,11 @@
 			<th>홈페이지</th>
 			<td>${vo.homePage}</td>
 			<th>좋아요</th>
-			<td><a href="javascript:goodCheck()">🌷</a>${vo.good} , 👍 👎 </td> <!-- 콘텐츠에 들어와있기 때문에 idx값 안넘겨줘도 된다❤👀🎁 -->
+			<td> <!-- content에 들어와있기 때문에 idx값 안넘겨줘도 된다❤ -->
+				<c:if test="${vo.good == 0}"><a href="javascript:goodCheck()">🤍 </a>${vo.good}</c:if>
+				<c:if test="${vo.good >= 1}"><a href="javascript:goodCheck()">❤️ ️</a>${vo.good}</c:if>
+			</td> 
+			<!-- <td>👍 👎</td> -->
 		</tr>
 		<tr>
 			<th>글내용</th>

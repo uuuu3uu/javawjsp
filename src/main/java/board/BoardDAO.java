@@ -156,6 +156,13 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			pstmt.executeUpdate();
+			
+			if(pstmt != null) pstmt.close();
+		      sql = "update board set readNum = readNum - 1 where idx = ?";
+		      pstmt = conn.prepareStatement(sql);
+		      pstmt.setInt(1, idx);
+		      pstmt.executeUpdate();
+		      
 		} catch (SQLException e) {
 			System.out.println("SQL 에러 : " + e.getMessage());
 		}	finally {
