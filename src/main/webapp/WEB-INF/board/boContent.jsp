@@ -203,7 +203,7 @@
 		<tr>
 			<th>작성자</th>
 			<th>댓글내용</th>
-			<th>작성일자</th>
+			<th class="text-">작성일자</th>
 			<th>접속IP</th>
 		</tr>
 		<c:forEach var="replyVo" items="${replyVos}">
@@ -213,7 +213,9 @@
 						(<a href="javascript:replyDelCheck(${replyVo.idx})" title="삭제하기">x</a>)
 					</c:if>
 				</td>
-				<td>${replyVo.content}</td>
+				<td>
+					<b>${fn:replace(replyVo.content, newLine, "<br/>")}</b>
+				</td>
 				<td>${replyVo.wDate}</td>
 				<td>${replyVo.hostIp}</td>
 			</tr>

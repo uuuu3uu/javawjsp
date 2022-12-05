@@ -55,7 +55,7 @@ public class BoContentCommand implements BoardInterface {
 		String imsiGoodIdx = "boardGood" + idx;
 		if(!goodIdx.contains(imsiGoodIdx)) {
 			dao.setBoGood(idx);
-			session.setAttribute("sSw", "1");
+			session.setAttribute("sSw", "1");		// 로그인 사용자가 이미 좋아요를 클릭한 게시글이라면 빨강색으로 표시하기 위해 sSW에 1을 전송하고 있따.
 		}
 		else {
 			session.setAttribute("sSw", "0");

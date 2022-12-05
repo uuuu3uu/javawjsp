@@ -44,6 +44,8 @@
   	else if(msg == "userCheckNo") msg = "정상적인 사용자가 아닙니다.....ㅗ";
   	else if(msg == "boUpdateOk") msg = "게시글이 수정되었습니다";
   	else if(msg == "boUpdateNo") msg = "게시글 수정 실패";
+  	else if(msg == "upLoad1Ok") msg = "파일 업로드 성공";
+  	else if(msg == "upLoad1No") msg = "파일 업로드 실패";
   	
   	alert(msg);
   	if(url != "") location.href = url;
