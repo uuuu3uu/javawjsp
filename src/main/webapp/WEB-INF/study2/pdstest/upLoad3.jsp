@@ -17,7 +17,7 @@
 			let fileBox = "";
 			fileBox += '<div id="fBox'+cnt+'">';
 			fileBox += '<input type="file" name="fName'+cnt+'" id="file'+cnt+'" class="form-control-file border mb-2" style="float:left;width:85%"/>';
-	    	fileBox += '<input type="button" value="삭제" onclick="deleteBox('+cnt+')" class="btn btn-danger form-control ml-2 mb-2" style="width:10%"/>';
+	    fileBox += '<input type="button" value="삭제" onclick="deleteBox('+cnt+')" class="btn btn-danger form-control ml-2 mb-2" style="width:10%"/>';
 			fileBox += '</div>';
 			$("#fileBoxAppend").append(fileBox);	
 		}

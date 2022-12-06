@@ -32,7 +32,7 @@
 	      </li>
 	      <c:if test="${level != 1}">
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">PDS</a>	<!-- 자료실 -->
+	        <a class="nav-link" href="${ctp}/pdsList.pds">PDS</a>	<!-- 자료실 -->
 	      </li> 
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">STUDY</a>
