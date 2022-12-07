@@ -54,7 +54,10 @@
 		<c:forEach var="file" items="${files}" varStatus="st">
 			<tr>
 				<td>${st.count}</td>
-				<td><a href="${ctp}/data/pdstest/${file}" download="${file}">${file}</a></td>
+				<td>
+					<a href="${ctp}/data/pdstest/${file}" download="${file}">${file}</a><br/>
+					<a href="${ctp}/javaDown.st?file=${file}">자바다운로드</a>
+				</td>
 				<td>
 					<c:set var="fNameArr" value="${fn:split(file,'.')}"></c:set> <!-- file에 있는 것 기준으로 .으로 분리하겠다 -->
 					<c:set var="extName" value="${fn:toLowerCase(fNameArr[fn:length(fNameArr)-1])}"></c:set> <!-- atom[0].jpg[1] -->

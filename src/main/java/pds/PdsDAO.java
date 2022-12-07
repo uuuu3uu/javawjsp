@@ -181,6 +181,63 @@ public class PdsDAO {
 		return res;
 	}
 
+	// 다운로드 횟수 증가
+	public void setPdsDownNum(int idx) {
+		try {
+			sql = "update pds set downNum = downNum + 1 where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 에러 : " + e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}
+				
+	}
+
+	// 자료실 콘텐츠 검색기
+	public ArrayList<PdsVO> getPdsContentSearch(String search, String searchString) {
+		ArrayList<PdsVO> vos = new ArrayList<>();
+		try {
+			sql = "select * ,datediff(now(), fDate) as day_diff,"
+					+ " timestampdiff(hour, fDate, now()) as hour_diff"
+					+ " from pds where "+search+" like? order by idx desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchString+"%");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				vo = new PdsVO();
+				vo.setIdx(rs.getInt("idx"));
+				vo.setMid(rs.getString("mid"));
+				vo.setNickName(rs.getString("nickName"));
+				vo.setfName(rs.getString("fName"));
+				vo.setfSName(rs.getString("fSName"));
+				vo.setIdx(rs.getInt("fSize"));
+				vo.setTitle(rs.getString("title"));
+				vo.setPart(rs.getString("part"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setfDate(rs.getString("fDate"));
+				vo.setDownNum(rs.getString("downNum"));
+				vo.setOpenSw(rs.getString("openSw"));
+				vo.setContent(rs.getString("content"));
+				vo.setHostIp(rs.getString("hostIp"));
+				
+				
+				vo.setDay_diff(rs.getInt("day_diff"));
+				vo.setHour_diff(rs.getInt("hour_diff"));
+				
+				
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 에러 : " + e.getMessage());
+		} finally {
+			getConn.rsClose();
+		}
+		return vos;
+	}
 	
 
 }

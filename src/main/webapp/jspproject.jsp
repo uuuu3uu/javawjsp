@@ -5,23 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="include2/bs4.jsp"/>
 <style>
-.parallax {
-  /* The image used */
-  background-image: url("images2/main1.jpg");
-
-  /* Set a specific height */
-  min-height: 500px; 
-
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-nav {
+	.parallax {
+	  /* The image used */
+	  background-image: url("images2/main1.jpg");
 	
-	margin-left : 40px;	
-}
+	  /* Set a specific height */
+	  min-height: 800px; 
+	
+	  /* Create the parallax scrolling effect */
+	  background-attachment: fixed;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	}
+	
+	nav {	
+		margin-left : 40px;	
+	}
+	.nav2 {
+		margin 0 auto;
+	}
 
 </style>
 </head>
@@ -29,7 +32,7 @@ nav {
 
 <div class="parallax">
 	<p class="text-center pt-1" style="font-size:15px;">Scroll Up and Down this page to see the parallax scrolling effect?.</p>
-	<hr style="border: solid 0.5px #999; margin-top:-9px">
+	<hr style="border: solid 0.3px #000; margin-top:-8px">
 		<div class="headerNav">
 			<div class="nav1" style="float:left;">
 				<!-- 메뉴바 -->
@@ -73,7 +76,7 @@ nav {
 			</nav><!-- 메뉴바 끝 -->
 		</div><!-- nav1 -->
 		<div class="nav2" style="float:left;">
-			<img src="images2/logo.png" style="width:200px"/>
+			<img src="images2/logo.png" style="width:200px;"/>
 		</div>
 		<div class="nav3" style="float:right;">
 			<p>장바구니 예약하기 </p>

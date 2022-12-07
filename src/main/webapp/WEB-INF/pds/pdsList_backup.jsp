@@ -65,42 +65,13 @@
 			});
 		}
   	
-  	// modal창을 통하여 비밀번호를 확인 후 파일 삭제처리(Ajax)
-  	function pdsDelCheckModalOk() {
-			let idx = pwdModalForm.idx.value;
-			let fSName = pwdModalForm.fSName.value;
-			let pwd = pwdModalForm.pwd.value;
-  		
-			let query = {
-					idx : idx,
-					fSName : fSName,
-					pwd : pwd
-			}
-			
-			$.ajax({
-				type	: "post",
-				url		: "${ctp}/pdsDelete.pds",
-				data 	: query,
-				success : function(res) {
-					if(res =="1") {
-						alert("삭제되었습니다");
-						location.reload();
-					}
-					else {
-						alert("삭제 실패");
-					}
-				},
-				error : function() {
-					alert("전송 오류");
-				}
-			});
-		}
-  	
   	// modal창을 통해서 비밀번호 확인 후 삭제처리
   	function pdsDelCheckModal(idx,fSName,part,pag) {
     	$("#myPwdModal").on("show.bs.modal", function(e){
     		$(".modal-body #idx").val(idx);
     		$(".modal-body #fSName").val(fSName);
+    		$(".modal-body #part").val(part);
+    		$(".modal-body #pag").val(pag);
     	});
     }
   	
@@ -117,18 +88,6 @@
 					alert("전송오류!");
 				}
 			});
-		}
-  	
-  	function searchCheck() {
-			let searchString = $("#searchString").val();
-			
-			if(searchString.trim() == "") {
-				alert("찾고자 하는 검색어를 입력하세요 list");
-				searchForm.searchString.focus();
-			}
-			else {
-				searchForm.submit();
-			}
 		}
   </script>
 </head>
@@ -188,15 +147,14 @@
 					<c:forEach var="fName" items="${fNames}" varStatus="st">
 						<a href="${ctp}/data/pds/${fSNames[st.index]}" download="${fName}" onclick="downNumCheck(${vo.idx})">${fName}</a><br/>
 					</c:forEach>
-					<!-- c:if -->
 					(<fmt:formatNumber value="${vo.fSize/1024}" pattern="#,###" />KByte)
 				</td>
 				<td>${vo.downNum}</td>
 				<td>
-          <a href="#" onclick="modalView('${vo.title}','${vo.nickName}','${vo.mid}','${vo.part}','${vo.fName}','${vo.fSName}','${vo.fSize}','${vo.downNum}')" class="badge badge-primary" data-toggle="modal" data-target="#myModal">모달창</a><br/>
-          <a href="${ctp}/pdsTotalDown.pds?idx=${vo.idx}" class="badge badge-info">전체다운</a><br/>					<!-- '${vo.idx}' 얘도 작은 따옴표로 해줘야한다. 일단은 타입을 맞춰줘야 하기 때문에  -->
-          <a href="javascript:pdsDelCheck('${vo.idx}','${vo.fSName}')" class="badge badge-danger">삭제1</a>
-          <a href="#" onclick="pdsDelCheckModal('${vo.idx}','${vo.fSName}')" data-toggle="modal" data-target="#myPwdModal" class="badge badge-danger">삭제2</a>
+          <a href="#" onclick="modalView('${vo.title}','${vo.nickName}','${vo.mid}','${vo.part}','${vo.fName}','${vo.fSName}','${vo.fSize}','${vo.downNum}')" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">모달창</a><br/>
+          전체다운<br/>						<!-- '${vo.idx}' 얘도 작은 따옴표로 해줘야한다. 일단은 타입을 맞춰줘야 하기 때문에  -->
+          <a href="javascript:pdsDelCheck('${vo.idx}','${vo.fSName}')" class="btn btn-danger btn-sm mb-1">삭제1</a>
+          <a href="#" onclick="pdsDelCheckModal('${vo.idx}','${vo.fSName}','${part}','${pag}')" data-toggle="modal" data-target="#myPwdModal" class="btn btn-danger btn-sm">삭제2</a>
 				</td>
 			</tr>
 			<c:set var="curScrStartNo" value="${curScrStartNo - 1}"/>
@@ -273,15 +231,16 @@
     
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">비밀번호 조회</h4>
+        <h4 class="modal-title"><span id="title"></span>(분류:<span id="part"></span>)</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       
       <!-- Modal body -->
       <div class="modal-body">
-       	<form name="pwdModalForm" class="was-validated">
+       	<form name="pwdModalForm" method="post" action="${ctp}/pdsPwdCheck.pds" class="was-validated">
+       		비밀번호 : 
        		<input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요" class="form-control mb-2" required/>
-       		<input type="button" value="비밀번호 확인 후 전송" onclick="pdsDelCheckModalOk()" class="btn btn-success form-control"/>
+       		<input type="submit" value="비밀번호 확인 후 전송" class="btn btn-success form-control"/>
        		<input type="hidden" name="idx" id="idx"/>
        		<input type="hidden" name="fSName" id="fSName"/>
        	</form>
@@ -295,22 +254,6 @@
   </div>
 </div>
 
-<!-- 검색기 -->
-<div class="container text-center">
-	<form name="searchForm" method="post" action="${ctp}/pdsSearch.pds">
-		<b>검색 : </b>
-		<select name="search">
-			<option value="title">글제목</option>
-			<option value="nickName">글쓴이</option>
-			<option value="content">글내용</option>
-		</select>
-		<input type="text" name="searchString" id="searchString"/>
-		<input type="button" value="검색" onclick="searchCheck()" name="seachString" id="searchString" class="btn btn-secondary"/>
-		<input type="hidden" name="pag" value="${pag}"/>
-    <input type="hidden" name="pageSize" value="${pageSize}"/>
-	</form>
-</div>
-<!-- 검색기 끝 -->
 
 <p><br/></p>
 <jsp:include page="/include/footer.jsp"/>
