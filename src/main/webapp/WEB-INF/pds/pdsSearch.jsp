@@ -35,7 +35,7 @@
 <div class="container">
 	<h2 class="text-center">자 료 실 검 색 리 스 트</h2>
 	 <div class="text-center">
-    (<font color="blue">${searchTitle}</font>(으)로 <font color="red">${searchString}</font>(을)를 검색한 결과 <font color="blue"><b>${searchCount}</b></font>건이 검색되었습니다.)
+    (<font color="blue">${searchTitle}</font>(으)로 <font color="red">${searchString}</font>(을)를 검색한 결과 <font color="blue"><b>${curScrStartNo}</b></font>건이 검색되었습니다.)
   </div>
 	<hr/>
 	<table class="table table-borderless">
@@ -43,14 +43,14 @@
 			<td class="text-left p-0">
 				<c:if test="${sLevel != 1}"><a href="${ctp}/pdsInput.pds" class="btn btn-success btn-sm">자료올리기</a></c:if>
 			</td>
-			<td class="text-right p-0">
+			<%-- <td class="text-right p-0">
 				<select name="pageSize" id="pageSize" onchange="pageCheck()">
 					<option value="5"  ${pageSize==5  ? 'selected' : ''}>5건</option>
 					<option value="10" ${pageSize==10 ? 'selected' : ''}>10건</option>
 					<option value="15" ${pageSize==15 ? 'selected' : ''}>15건</option>
 					<option value="20" ${pageSize==20 ? 'selected' : ''}>20건</option>
 				</select>
-			</td>
+			</td> --%>
 		</tr>
 	</table>
 	<table class="table table-hover text-center">
