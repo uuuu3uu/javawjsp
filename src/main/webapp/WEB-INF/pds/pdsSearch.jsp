@@ -33,7 +33,7 @@
 <jsp:include page="/include/header.jsp"/>
 <p><br/></p>
 <div class="container">
-	<h2 class="text-center">자 료 실 조 검 검 색 리 스 트</h2>
+	<h2 class="text-center">자 료 실 검 색 리 스 트</h2>
 	 <div class="text-center">
     (<font color="blue">${searchTitle}</font>(으)로 <font color="red">${searchString}</font>(을)를 검색한 결과 <font color="blue"><b>${searchCount}</b></font>건이 검색되었습니다.)
   </div>

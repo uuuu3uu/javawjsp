@@ -188,8 +188,12 @@
 					<c:forEach var="fName" items="${fNames}" varStatus="st">
 						<a href="${ctp}/data/pds/${fSNames[st.index]}" download="${fName}" onclick="downNumCheck(${vo.idx})">${fName}</a><br/>
 					</c:forEach>
-					<!-- c:if -->
-					(<fmt:formatNumber value="${vo.fSize/1024}" pattern="#,###" />KByte)
+					<c:if test="${vo.fSize/1024/1024 < 1}">
+          	(<fmt:formatNumber value="${vo.fSize/1024}" pattern="#,###" />KByte)
+         	</c:if>
+          <c:if test="${vo.fSize/1024/1024 >= 1}">
+          	(<fmt:formatNumber value="${vo.fSize/1024/1000}" pattern=".00" />MByte)
+          </c:if>
 				</td>
 				<td>${vo.downNum}</td>
 				<td>
